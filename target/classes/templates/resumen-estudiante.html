@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <link rel="stylesheet" th:href="@{/css/team_table.css}">
+	    <link rel="shortcut icon" th:href="@{/img/favicon.png}" type="image/x-icon">
+	    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Resumen del Estudiante</title>
+    <style>
+		.cont_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px; /* Reduce el padding para disminuir espacio */
+        }
+
+        .logo img {
+            max-height: 50px; /* Tamaño del logo */
+        }
+
+        .BIENVENIDO a {
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+			margin: 20px
+        }
+
+        .cont {
+            margin-top: 10px; 
+        }
+
+        .form-group {
+            margin-bottom: 10px; 
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+			text-align: center; 
+        }
+        .aprobado {
+            color: green;
+            font-weight: bold;
+        }
+        .desaprobado {
+            color: red;
+            font-weight: bold;
+        }
+		footer {
+	        text-align: center;
+	        padding: 20px 0;
+	        background-color: rgba(255, 255, 255, 0.5);
+	        color: rgb(0, 0, 0);
+			border-radius: 10px;
+			box-shadow: 10px 6px 10px rgba(0, 0, 0, 0.1);
+	    }
+    </style>
+</head>
+<body>
+	<header>
+	    <div class="container text-center">
+	        <div class="BIENVENIDO">
+	            <a th:href="@{/}" class="btn btn-primary">
+	                <strong>Regresar</strong>
+	            </a>
+				<a th:href="@{/coordinador/promedios}" class="btn btn-primary">
+				    Ver Ranking
+				</a>
+	        </div>
+	    </div>
+	</header>
+	<main>
+	    <div class="container">
+	        <div class="accordion" id="studentAccordion">
+	            <!-- Información básica -->
+	            <div class="card">
+	                <div class="card-header" id="basicInfoHeader">
+	                    <h5 class="mb-0">
+	                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#basicInfo" aria-expanded="true" aria-controls="basicInfo">
+	                            Información Básica
+	                        </button>
+	                    </h5>
+	                </div>
+
+	                <div id="basicInfo" class="collapse show" aria-labelledby="basicInfoHeader" data-parent="#studentAccordion">
+	                    <div class="card-body">
+	                        <div th:each="estudiante : ${estudiante}">
+								<div><strong>Usuario:</strong><br> [[ ${estudiante.user} ]]</div>
+	                          	<div><strong>Contraseña:</strong><br> [[ ${estudiante.password} ]]</div>
+	                            <div><strong>Identificación:</strong><br> [[ ${estudiante.identificacion} ]]</div>
+	                            <div><strong>Nombre:</strong><br> [[ ${estudiante.nombre} ]]</div>
+	                            <div><strong>Apellido:</strong><br> [[ ${estudiante.apellido} ]]</div>
+								<div><strong>Email:</strong><br> [[ ${estudiante.correo} ]]</div>
+	                        	<div><strong>Teléfono:</strong><br> [[ ${estudiante.telefono} ]]</div>
+	                            <div><strong>Número de Registro:</strong><br> [[ ${estudiante.registro} ]]</div>
+								<div><strong>Estado:</strong><br> [[ ${estudiante.estado} ]]</div>
+	                            <div><strong>Puntaje Total:</strong><br> [[ ${estudiante.puntajetotal} ]]</div>
+	                            <div><strong>Nivel Puntaje Total:</strong><br> [[ ${estudiante.niveltotal} ]]</div>
+								<strong>Resultado Final:</strong>
+						        <p th:if="${estudiante.puntajetotal >= 80}" class="aprobado">Aprobado</p>
+						        <p th:if="${estudiante.puntajetotal < 80}" class="desaprobado">Desaprobado</p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <!-- Información detallada -->
+	            <div class="card">
+	                <div class="card-header" id="detailedInfoHeader">
+	                    <h5 class="mb-0">
+	                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#detailedInfo" aria-expanded="false" aria-controls="detailedInfo">
+	                            Información Detallada
+	                        </button>
+	                    </h5>
+	                </div>
+
+	                <div id="detailedInfo" class="collapse" aria-labelledby="detailedInfoHeader" data-parent="#studentAccordion">
+	                    <div class="card-body">
+	                        <div th:each="estudiante : ${estudiante}">
+	                            <div><strong>Prueba Comunicación Escrita:</strong><br> [[ ${estudiante.comunicacionescrita} ]]</div>
+	                            <div><strong>Nivel Comunicación Escrita:</strong><br> [[ ${estudiante.nivelcomunicacionescrita} ]]</div>
+	                            <div><strong>Prueba Razonamiento Cuantitativo:</strong><br> [[ ${estudiante.razonamiento} ]]</div>
+	                            <div><strong>Nivel Prueba Razonamiento Cuantitativo:</strong><br> [[ ${estudiante.nivelrazonamiento} ]]</div>
+	                            <div><strong>Prueba Lectura Crítica:</strong><br> [[ ${estudiante.lectura} ]]</div>
+	                            <div><strong>Nivel Lectura Crítica:</strong><br> [[ ${estudiante.nivellectura} ]]</div>
+	                            <div><strong>Prueba Competencias Ciudadanas:</strong><br> [[ ${estudiante.competencias} ]]</div>
+	                            <div><strong>Nivel Competencias Ciudadanas:</strong><br> [[ ${estudiante.nivelcompetencias} ]]</div>
+	                            <div><strong>Prueba Inglés:</strong><br> [[ ${estudiante.ingles} ]]</div>
+	                            <div><strong>Nivel Inglés:</strong><br> [[ ${estudiante.nivelingles} ]]</div>
+	                            <div><strong>Prueba Formulación De Proyectos De Ingeniería:</strong><br> [[ ${estudiante.formulacionproyectos} ]]</div>
+	                            <div><strong>Nivel Formulación De Proyectos De Ingeniería:</strong><br> [[ ${estudiante.nivelformulacion} ]]</div>
+	                            <div><strong>Prueba Pensamiento Científico Matemáticas y Estadística:</strong><br> [[ ${estudiante.pensamiento} ]]</div>
+	                            <div><strong>Nivel Pensamiento Científico Matemáticas y Estadística:</strong><br> [[ ${estudiante.nivelpensamiento} ]]</div>
+	                            <div><strong>Prueba Diseño De Software:</strong><br> [[ ${estudiante.diseño} ]]</div>
+	                            <div><strong>Nivel Diseño De Software:</strong><br> [[ ${estudiante.niveldiseño} ]]</div>
+								<div><strong>Nivel Total Ingles:</strong><br> [[ ${estudiante.niveltotalingles} ]]</div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</main>
+	<footer>
+	    <p>&copy; 2024 Carlos David Murillo Moreno || Todos los derechos reservados.</p>
+	</footer>
+	<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM}" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
