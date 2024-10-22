@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Formulario Estudiante</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/team_form.css}">
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cont {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .name label, 
+        .pais label, 
+        .presidente label, 
+        .siglas label {
+            font-weight: 600;
+        }
+        .return {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .return a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .return a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            text-align: center;
+        }
+        .button button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+<main>
+    <div class="cont">
+        <div class="return">
+            <a th:href="@{/estudiante/}">Regresar</a>
+        </div>
+        <form th:action="@{/estudiante/save}" th:object="${estudiante}" method="post">
+            <input type="hidden" th:field="*{id}">
+            
+            <div class="form-group">
+                <label for="user">Usuario:</label>
+                <input type="text" id="user" th:field="*{user}" class="form-control" placeholder="Ingrese el usuario">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="text" id="password" th:field="*{password}" class="form-control" placeholder="Ingrese una contraseña">
+            </div>
+
+            <div class="form-group">
+                <label for="identificacion">Identificacion:</label>
+                <input type="text" id="identificacion" th:field="*{identificacion}" class="form-control" placeholder="Ingrese el numero de identificacion">
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" placeholder="Ingrese el nombre">
+            </div>
+			
+			<div class="form-group">
+				<label for="apellido">Apellido:</label>
+				<input type="text" id="apellido" th:field="*{apellido}" class="form-control" placeholder="Ingrese el apellido">
+		     </div>
+			 
+			 <div class="form-group">
+				<label for="correo">Email:</label>
+				<input type="text" id="correo" th:field="*{correo}" class="form-control" placeholder="Ingrese el email">
+			 </div>
+			 
+			 <div class="form-group">
+				<label for="telefono">Telefono:</label>
+				<input type="text" id="telefono" th:field="*{telefono}" class="form-control" placeholder="Ingrese el telefono">
+			</div>
+						 
+			<div class="form-group">
+				<label for="registro">Numero de Registro:</label>
+				<input type="text" id="registro" th:field="*{registro}" class="form-control" placeholder="Ingrese el numero de registro">
+			</div>		
+			
+			<div class="form-group">
+				<label for="puntajetotal">Puntaje Total:</label>
+				<input type="text" id="puntajetotal" th:field="*{puntajetotal}" class="form-control" placeholder="Ingrese el Puntaje Total">
+			</div>
+			<div class="form-group">
+			    <label for="niveltotal">Puntaje Nivel:</label>
+			    <select id="niveltotal" th:field="*{niveltotal}" class="form-control">
+			        <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${niveltotal == 'Nivel 1'}">1</option>
+			        <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${niveltotal == 'Nivel 2'}">2</option>
+			        <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${niveltotal == 'Nivel 3'}">3</option>
+			        <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${niveltotal == 'Nivel 4'}">4</option>
+			        <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${niveltotal == 'Nivel 5'}">5</option>
+			    </select>
+			</div>
+			<div class="form-group">
+			    <label for="estado">Estado:</label>
+			    <select id="estado" th:field="*{estado}" class="form-control">
+			        <option value="Presentado" th:text="'Presentado'" th:selected="${estado == 'Presentado'}">Presentado</option>
+			        <option value="Anulado" th:text="'Anulado'" th:selected="${estado == 'Anulado'}">Anulado</option>
+			    </select>
+			</div>
+
+			<div class="form-group">
+				<label for="comunicacionescrita">Prueba Comunicacion Escrita:</label>
+				<input type="text" id="comunicacionescrita" th:field="*{comunicacionescrita}" class="form-control" placeholder="Ingrese la prueba de comunicacion escrita">
+			 </div>
+			 <div class="form-group">
+			     <label for="nivelcomunicacionescrita">Nivel Comunicación Escrita:</label>
+			     <select id="nivelcomunicacionescrita" th:field="*{nivelcomunicacionescrita}" class="form-control">
+			         <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${nivelcomunicacionescrita == 'Nivel 1'}">1</option>
+			         <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${nivelcomunicacionescrita == 'Nivel 2'}">2</option>
+			         <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${nivelcomunicacionescrita == 'Nivel 3'}">3</option>
+			         <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${nivelcomunicacionescrita == 'Nivel 4'}">4</option>
+			         <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${nivelcomunicacionescrita == 'Nivel 5'}">5</option>
+			     </select>
+			 </div>
+			 <div class="form-group">
+ 				<label for="razonamiento">Prueba Razonamiento Cuantitativo:</label>
+ 				<input type="text" id="razonamiento" th:field="*{razonamiento}" class="form-control" placeholder="Ingrese la prueba de razonamiento cuantitativo">
+ 			 </div>	
+			 <div class="form-group">
+			     <label for="nivelrazonamiento">Nivel Prueba Razonamiento Cuantitativo:</label>
+			     <select id="nivelrazonamiento" th:field="*{nivelrazonamiento}" class="form-control">
+			         <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${nivelrazonamiento == 'Nivel 1'}">1</option>
+			         <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${nivelrazonamiento == 'Nivel 2'}">2</option>
+			         <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${nivelrazonamiento == 'Nivel 3'}">3</option>
+			         <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${nivelrazonamiento == 'Nivel 4'}">4</option>
+			         <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${nivelrazonamiento == 'Nivel 5'}">5</option>
+			     </select>
+			 </div>
+			 <div class="form-group">
+ 				<label for="lectura">Prueba Lectura Critica:</label>
+ 				<input type="text" id="lectura" th:field="*{lectura}" class="form-control" placeholder="Ingrese la prueba de lectura critica">
+ 			 </div>	
+			 <div class="form-group">
+			     <label for="nivellectura">Nivel Lectura Crítica:</label>
+			     <select id="nivellectura" th:field="*{nivellectura}" class="form-control">
+			         <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${nivellectura == 'Nivel 1'}">1</option>
+			         <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${nivellectura == 'Nivel 2'}">2</option>
+			         <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${nivellectura == 'Nivel 3'}">3</option>
+			         <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${nivellectura == 'Nivel 4'}">4</option>
+			         <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${nivellectura == 'Nivel 5'}">5</option>
+			     </select>
+			 </div>
+			 <div class="form-group">
+ 				<label for="competencias">Prueba Competencias Ciudadanas:</label>
+ 				<input type="text" id="competencias" th:field="*{competencias}" class="form-control" placeholder="Ingrese la prueba de competencias ciudadanas">
+ 			 </div>	
+			 <div class="form-group">
+			     <label for="nivelcompetencias">Nivel Competencias Ciudadanas:</label>
+			     <select id="nivelcompetencias" th:field="*{nivelcompetencias}" class="form-control">
+			         <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${nivelcompetencias == 'Nivel 1'}">1</option>
+			         <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${nivelcompetencias == 'Nivel 2'}">2</option>
+			         <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${nivelcompetencias == 'Nivel 3'}">3</option>
+			         <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${nivelcompetencias == 'Nivel 4'}">4</option>
+			         <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${nivelcompetencias == 'Nivel 5'}">5</option>
+			     </select>
+			 </div>
+			 <div class="form-group">
+ 				<label for="ingles">Prueba Ingles:</label>
+ 				<input type="text" id="ingles" th:field="*{ingles}" class="form-control" placeholder="Ingrese la prueba de ingles">
+ 			 </div>	
+			 <div class="form-group">
+			     <label for="nivelingles">Nivel Inglés:</label>
+			     <select id="nivelingles" th:field="*{nivelingles}" class="form-control">
+			         <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${nivelingles == 'Nivel 1'}">1</option>
+			         <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${nivelingles == 'Nivel 2'}">2</option>
+			         <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${nivelingles == 'Nivel 3'}">3</option>
+			         <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${nivelingles == 'Nivel 4'}">4</option>
+			         <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${nivelingles == 'Nivel 5'}">5</option>
+			     </select>
+			 </div>
+			 <div class="form-group">
+ 				<label for="formulacionproyectos">Prueba Formulación De Proyectos De Ingeniería:</label>
+ 				<input type="text" id="formulacionproyectos" th:field="*{formulacionproyectos}" class="form-control" placeholder="Ingrese la prueba de Formulación De Proyectos">
+ 			 </div>
+			 <div class="form-group">
+			     <label for="nivelformulacion">Nivel Formulación De Proyectos:</label>
+			     <select id="nivelformulacion" th:field="*{nivelformulacion}" class="form-control">
+			         <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${nivelformulacion == 'Nivel 1'}">1</option>
+			         <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${nivelformulacion == 'Nivel 2'}">2</option>
+			         <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${nivelformulacion == 'Nivel 3'}">3</option>
+			         <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${nivelformulacion == 'Nivel 4'}">4</option>
+			         <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${nivelformulacion == 'Nivel 5'}">5</option>
+			     </select>
+			 </div>	
+			 <div class="form-group">
+  				<label for="pensamiento">Prueba Pensamiento Científico Matemáticas Y Estadística:</label>
+  				<input type="text" id="pensamiento" th:field="*{pensamiento}" class="form-control" placeholder="Ingrese la prueba de Pensamiento Científico Matemáticas Y Estadística">
+  			 </div>	
+			 <div class="form-group">
+			     <label for="nivelpensamiento">Nivel Pensamiento Científico:</label>
+			     <select id="nivelpensamiento" th:field="*{nivelpensamiento}" class="form-control">
+			         <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${nivelpensamiento == 'Nivel 1'}">1</option>
+			         <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${nivelpensamiento == 'Nivel 2'}">2</option>
+			         <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${nivelpensamiento == 'Nivel 3'}">3</option>
+			         <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${nivelpensamiento == 'Nivel 4'}">4</option>
+			         <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${nivelpensamiento == 'Nivel 5'}">5</option>
+			     </select>
+			 </div>
+			 <div class="form-group">
+  				<label for="diseño">Prueba Diseño De Software:</label>
+  				<input type="text" id="diseño" th:field="*{diseño}" class="form-control" placeholder="Ingrese la prueba de Diseño De Software">
+  			 </div>	
+			 <div class="form-group">
+			     <label for="niveldiseño">Nivel Diseño De Software:</label>
+			     <select id="niveldiseño" th:field="*{niveldiseño}" class="form-control">
+			         <option value="Nivel 1" th:text="'Nivel 1'" th:selected="${niveldiseño == 'Nivel 1'}">1</option>
+			         <option value="Nivel 2" th:text="'Nivel 2'" th:selected="${niveldiseño == 'Nivel 2'}">2</option>
+			         <option value="Nivel 3" th:text="'Nivel 3'" th:selected="${niveldiseño == 'Nivel 3'}">3</option>
+			         <option value="Nivel 4" th:text="'Nivel 4'" th:selected="${niveldiseño == 'Nivel 4'}">4</option>
+			         <option value="Nivel 5" th:text="'Nivel 5'" th:selected="${niveldiseño == 'Nivel 5'}">5</option>
+			     </select>
+			 </div>
+			 <div class="form-group">
+			     <label for="niveltotalingles">Nivel Total de Ingles:</label>
+			     <select id="niveltotalingles" th:field="*{niveltotalingles}" class="form-control">
+					 <option value="A0" th:text="'A0'" th:selected="${niveltotalingles == 'A0'}">A0</option>
+			         <option value="A1" th:text="'A1'" th:selected="${niveltotalingles == 'A1'}">A1</option>
+			         <option value="A2" th:text="'A2'" th:selected="${niveltotalingles == 'A2'}">A2</option>
+			         <option value="B1" th:text="'B1'" th:selected="${niveltotalingles == 'B1'}">B1</option>
+			         <option value="B2" th:text="'B2'" th:selected="${niveltotalingles == 'B2'}">B2</option>
+					 <option value="C1" th:text="'C1'" th:selected="${niveltotalingles == 'C1'}">C1</option>
+			         <option value="C2" th:text="'C2'" th:selected="${niveltotalingles == 'C2'}">C2</option>
+			     </select>
+			 </div>																			 
+
+            <div class="button">
+                <button type="submit">Agregar</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

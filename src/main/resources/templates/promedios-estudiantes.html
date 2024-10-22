@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Promedios Estudiantes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Color de fondo suave */
+            font-family: Arial, sans-serif; /* Fuente agradable */
+            color: #343a40; /* Color de texto */
+            text-align: center; /* Centrado de texto */
+            padding: 20px; /* Espaciado interno */
+        }
+        h1 {
+            margin-bottom: 30px; /* Margen inferior para el título */
+            color: #007bff; /* Color del título */
+        }
+        .promedio {
+            background-color: #ffffff; /* Fondo blanco para las tarjetas */
+            border-radius: 8px; /* Bordes redondeados */
+            padding: 15px; /* Espaciado interno */
+            margin: 10px; /* Margen para separar las tarjetas */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        }
+		footer {
+	        text-align: center;
+	        padding: 20px 0;
+	        background-color: rgba(255, 255, 255, 0.5);
+	        color: rgb(0, 0, 0);
+			border-radius: 10px;
+			box-shadow: 10px 6px 10px rgba(0, 0, 0, 0.1);
+	    }
+    </style>
+</head>
+
+<body>
+    <h1>Promedios de los Estudiantes</h1>
+
+    <div class="promedio">
+        <p><strong>Promedio Puntaje Total:</strong> [[${promedioTotal}]]</p>
+    </div>
+    <div class="promedio">
+        <p><strong>Promedio Comunicación Escrita:</strong> [[${promedioComunicacion}]]</p>
+    </div>
+    <div class="promedio">
+        <p><strong>Promedio Razonamiento Cuantitativo:</strong> [[${promedioRazonamiento}]]</p>
+    </div>
+    <div class="promedio">
+        <p><strong>Promedio Lectura Crítica:</strong> [[${promedioLectura}]]</p>
+    </div>
+    <div class="promedio">
+        <p><strong>Promedio Competencias Ciudadanas:</strong> [[${promedioCompetenciasciudadanas}]]</p>
+    </div>
+    <div class="promedio">
+        <p><strong>Promedio Inglés:</strong> [[${promedioIngles}]]</p>
+    </div>
+    <div class="promedio">
+        <p><strong>Promedio Formulación De Proyectos de Ingeniería:</strong> [[${promedioFormulacionproyectos}]]</p>
+    </div>
+    <div class="promedio">
+        <p><strong>Promedio Pensamiento Científico-Matemáticas Y Estadística:</strong> [[${promedioPensamientocientifico}]]</p>
+    </div>
+    <div class="promedio">
+        <p><strong>Promedio Diseño de Software:</strong> [[${promedioDiseño}]]</p>
+    </div>
+	
+	<footer>
+		    <p>&copy; 2024 Carlos David Murillo Moreno || Todos los derechos reservados.</p>
+		</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
